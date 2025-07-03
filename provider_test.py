@@ -6,13 +6,16 @@ from urllib.parse import urlparse
 
 # --- Настройки тестов ---
 TEST_SUITE = [
-    {"id": "CF-02", "provider": "Cloudflare", "url": "https://genshin.jmp.blue/characters/all#"},
-    {"id": "CF-03", "provider": "Cloudflare", "url": "https://api.frankfurter.dev/v1/2000-01-01..2002-12-31"},
-    {"id": "DO-01", "provider": "DigitalOcean", "url": "https://genderize.io/"},
-    {"id": "HE-01", "provider": "Hetzner", "url": "https://bible-api.com/john+1,2,3,4,5,6,7,8,9,10"},
-    # Для теста DPI лучше использовать ссылки на файлы > 1MB
-    {"id": "HE-02", "provider": "Hetzner", "url": "https://ash-speed.hetzner.com/100MB.bin"},
-    {"id": "OVH-01", "provider": "OVH", "url": "https://proof.ovh.net/files/1Mb.dat"},
+    {"id": "CF-02", "provider": "Cloudflare", "times": 1, "url": "https://genshin.jmp.blue/characters/all#"},
+    {"id": "CF-03", "provider": "Cloudflare", "times": 1, "url": "https://api.frankfurter.dev/v1/2000-01-01..2002-12-31"},
+    {"id": "DO-01", "provider": "DigitalOcean", "times": 2, "url": "https://genderize.io/"},
+    {"id": "HE-01", "provider": "Hetzner", "times": 2, "url": "https://bible-api.com/john+1,2,3,4,5,6,7,8,9,10"},
+    {"id": "HE-02", "provider": "Hetzner", "times": 1, "url": "https://tcp1620-01.dubybot.live/1MB.bin"},
+    {"id": "HE-03", "provider": "Hetzner", "times": 1, "url": "https://tcp1620-02.dubybot.live/1MB.bin"},
+    {"id": "HE-04", "provider": "Hetzner", "times": 1, "url": "https://tcp1620-05.dubybot.live/1MB.bin"},
+    {"id": "HE-05", "provider": "Hetzner", "times": 1, "url": "https://tcp1620-06.dubybot.live/1MB.bin"},
+    {"id": "OVH-01", "provider": "OVH", "times": 1, "url": "https://eu.api.ovh.com/console/rapidoc-min.js"},
+    {"id": "OR-01", "provider": "Oracle", "times": 1, "url": "https://sfx.ovh/10M.bin"},
 ]
 
 TIMEOUT = 10 # Слегка увеличим таймаут для больших файлов
@@ -61,7 +64,7 @@ def check_tls_version(host, port=443, version="TLSv1_3"):
     try:
         with socket.create_connection((host, port), timeout=TIMEOUT) as sock:
             with context.wrap_socket(sock, server_hostname=host) as ssock:
-                # Сравниваем ssock.version() ('TLSv1.3') с version ('TLSv1_3')
+                # ИСПРАВЛЕНИЕ: Сравниваем ssock.version() ('TLSv1.3') с version ('TLSv1_3')
                 # Для этого заменяем '_' на '.' в нашей переменной
                 if ssock.version() == version.replace('_', '.'):
                     return "OK ✅"
@@ -95,6 +98,8 @@ def check_sni_ip(ip, sni, port=443):
         result["HTTP"] = f"Blocked ❌ ({e.__class__.__name__})"
         
     return result
+
+# ... (остальной код с меню остался без изменений) ...
 
 def main_menu():
     print_header("VPN/Провайдер тестер (v2.0)")
