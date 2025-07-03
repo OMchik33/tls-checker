@@ -61,7 +61,7 @@ def check_tls_version(host, port=443, version="TLSv1_3"):
     try:
         with socket.create_connection((host, port), timeout=TIMEOUT) as sock:
             with context.wrap_socket(sock, server_hostname=host) as ssock:
-                # ИСПРАВЛЕНИЕ: Сравниваем ssock.version() ('TLSv1.3') с version ('TLSv1_3')
+                # Сравниваем ssock.version() ('TLSv1.3') с version ('TLSv1_3')
                 # Для этого заменяем '_' на '.' в нашей переменной
                 if ssock.version() == version.replace('_', '.'):
                     return "OK ✅"
@@ -95,8 +95,6 @@ def check_sni_ip(ip, sni, port=443):
         result["HTTP"] = f"Blocked ❌ ({e.__class__.__name__})"
         
     return result
-
-# ... (остальной код с меню остался без изменений) ...
 
 def main_menu():
     print_header("VPN/Провайдер тестер (v2.0)")
