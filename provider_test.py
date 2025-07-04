@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 
 # --- Настройки тестов ---
 TEST_SUITE = [
+    {"id": "YT", "provider": "YouTube", "times": 1, "url": "https://youtube.com"},
     {"id": "CF-02", "provider": "Cloudflare", "times": 1, "url": "https://genshin.jmp.blue/characters/all#"},
     {"id": "CF-03", "provider": "Cloudflare", "times": 1, "url": "https://api.frankfurter.dev/v1/2000-01-01..2002-12-31"},
     {"id": "DO-01", "provider": "DigitalOcean", "times": 2, "url": "https://genderize.io/"},
@@ -106,6 +107,10 @@ def main_menu():
     print("1. Общий тест популярных хостингов (DPI + TLS 1.2/1.3)")
     print("2. Тест SNI + IP (ручной ввод)")
     print("0. Выход")
+    print(" ")
+    print("Сайт: https://hyperion-cs.github.io/dpi-checkers/ru/tcp-16-20/")
+    print(" ")
+    print(" ")
     return input("Выберите пункт меню: ").strip()
 
 def run_general_test():
