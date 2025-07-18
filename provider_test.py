@@ -19,7 +19,7 @@ TEST_SUITE = [
     {"id": "OR-01", "provider": "Oracle", "times": 1, "url": "https://sfx.ovh/10M.bin"},
 ]
 
-TIMEOUT = 10 # Слегка увеличим таймаут для больших файлов
+TIMEOUT = 10 # таймаут для больших файлов
 
 def print_header(text):
     print("\n" + "="*len(text))
@@ -99,8 +99,6 @@ def check_sni_ip(ip, sni, port=443):
         result["HTTP"] = f"Blocked ❌ ({e.__class__.__name__})"
         
     return result
-
-# ... (остальной код с меню остался без изменений) ...
 
 def main_menu():
     print_header("VPN/Провайдер тестер (v2.0)")
