@@ -12,11 +12,12 @@ TIMEOUT = 10  # Общий таймаут для сетевых операций
 
 # Список сайтов для стандартного теста
 DEFAULT_TEST_SUITE = [
+    {"id": "CF", "provider": "Cloudflare_1", "url": "https://genshin.jmp.blue/characters/all#"},
+    {"id": "CF", "provider": "Cloudflare_2", "url": "https://api.frankfurter.dev/v1/2000-01-01..2002-12-31"},
     {"id": "YT", "provider": "YouTube", "url": "https://youtube.com"},
     {"id": "TG", "provider": "Telegram", "url": "https://web.telegram.org"},
     {"id": "RT", "provider": "RuTracker", "url": "https://rutracker.org"},
-    # Сайт для теста DPI на разрыв соединения
-    {"id": "DPI-16KB", "provider": "Hetzner", "url": "https://tcp1620-01.dubybot.live/1MB.bin"},
+    {"id": "HZ", "provider": "Hetzner", "url": "https://tcp1620-01.dubybot.live/1MB.bin"},
 ]
 
 # --- Вспомогательные функции ---
@@ -46,7 +47,7 @@ def add_user_site(url, sites_list):
     else:
         print(f"ℹ️ Сайт {url} уже есть в вашем списке.")
 
-# --- Функции отдельных тестов (без изменений) ---
+# --- Функции отдельных тестов ---
 
 def test_dns(hostname):
     resolver = dns.resolver.Resolver()
@@ -233,7 +234,7 @@ HTTP:
 
 DPI (16KB):
   - Специальный тест, который пытается скачать большой файл. Если загрузка обрывается
-    на объеме около 16-24 КБ, это указывает на特定ный вид DPI-блокировки,
+    на объеме около 16-24 КБ, это указывает на вид DPI-блокировки,
     разрывающей соединение после передачи небольшого объема данных.
 
 --- ИНТЕРПРЕТАЦИЯ ИТОГОВЫХ ВЕРДИКТОВ ---
