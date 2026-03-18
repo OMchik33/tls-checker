@@ -1,4 +1,4 @@
-Создана аналогичная версия с GUI + некоторые фиксы и улучшения https://github.com/OMchik33/DPI_Connectivity_Tester
+Создана аналогичная версия с GUI + некоторые фиксы и улучшения https://github.com/OMchik33/Connectivity_Tester
 
 # DPI & Connectivity Tester
 
