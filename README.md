@@ -1,5 +1,5 @@
 Создана аналогичная версия с GUI + некоторые фиксы и улучшения
-https://github.com/OMchik33/tls-checker-GUI
+[https://github.com/OMchik33/tls-checker-GUI](https://github.com/OMchik33/DPI_Connectivity_Tester)
 
 # DPI & Connectivity Tester
 
